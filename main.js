@@ -7,12 +7,14 @@ class WelcomeScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('logo', 'public/images/logo.png'); // Load logo image
     }
 
     create() {
-        this.add.text(640, 200, 'Welcome to Pong!', { fontSize: '64px', fill: '#fff' }).setOrigin(0.5, 0.5);
+        this.add.text(640, 200, 'Welcome to Best Educations Pong!', { fontSize: '64px', fill: '#fff' }).setOrigin(0.5, 0.5);
+        this.add.text(640, 250, 'Launching You into the Future!', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5, 0.5);
         this.add.text(640, 300, 'Select Difficulty:', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5, 0.5);
-
+    
         const easyButton = this.add.text(640, 400, 'Easy', { fontSize: '32px', fill: '#fff' })
             .setOrigin(0.5, 0.5)
             .setInteractive()
@@ -20,7 +22,7 @@ class WelcomeScene extends Phaser.Scene {
                 this.selectedDifficulty = 'easy';
                 this.startGame();
             });
-
+    
         const normalButton = this.add.text(640, 460, 'Normal', { fontSize: '32px', fill: '#fff' })
             .setOrigin(0.5, 0.5)
             .setInteractive()
@@ -28,7 +30,7 @@ class WelcomeScene extends Phaser.Scene {
                 this.selectedDifficulty = 'normal';
                 this.startGame();
             });
-
+    
         const hardButton = this.add.text(640, 520, 'Hard', { fontSize: '32px', fill: '#fff' })
             .setOrigin(0.5, 0.5)
             .setInteractive()
@@ -36,15 +38,18 @@ class WelcomeScene extends Phaser.Scene {
                 this.selectedDifficulty = 'hard';
                 this.startGame();
             });
+
+        // Add logo image below difficulty buttons
+        this.add.image(640, 620, 'logo').setOrigin(0.5, 0.5).setScale(0.05); // Adjust the scale as needed
     }
 
     startGame() {
         this.scene.start('GameScene', { difficulty: this.selectedDifficulty });
     }
 
-    update() {
-    }
+    update() {}
 }
+
 
 class GameScene extends Phaser.Scene {
     constructor() {
